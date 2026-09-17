@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/estilo.css')}}">
+</head>
+<body>
+    <h1>Menu</h1>
+    <form action="/rotaPost" method="post"><button>rotaPost</button></form>
+    <form action="rotaGET" method="get"><button>rotaGET</button></form>
+    <form action="/sorvete/get" method="get"><button>rota get sorvete</button></form>
+    <form action="/sorvete/49" method="post"><button>rota post sorvete</button></form>
+    <form action="/sorvete/zezinho" method="post"><button>rota zezinho sorvete</button></form>
+
+    <h1>{{nome}}</h1>
+    {% for item in tdsb %}
+    <h3>{{item}}</h3>
+    {% endfor %}
+
+</body>
+</html>

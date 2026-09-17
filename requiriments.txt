@@ -1,0 +1,10 @@
+1º Passo Criar ambiente Vitual:
+py -m venv .venv
+2º Passo ativar o ambiente virtual:
+.\.venv\Scripts\activate
+
+3º Passo instalar bibliotecas
+pip install Flask
+
+4º Passo Rodar projeto
+flask --app [nomeArquivo] run --debug
