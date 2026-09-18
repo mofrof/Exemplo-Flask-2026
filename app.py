@@ -7,7 +7,26 @@ def paginaInicial():
     listaFrutas = ["Abacaxi", "uva", "Pera", "Banana","Abacaxi", "uva", "Pera", "Banana","Abacaxi", "uva", "Pera", "Banana","Abacaxi", "uva", "Pera", "Banana","Abacaxi", "uva", "Pera", "Banana","Abacaxi", "uva", "Pera", "Banana","Abacaxi", "uva", "Pera", "Banana","Abacaxi", "uva", "Pera", "Banana","Abacaxi", "uva", "Pera", "Banana","Abacaxi", "uva", "Pera", "Banana"]
     return render_template("paginaInicial.html", tdsb = listaFrutas, nome = "Zezinho")
             #/sorvete/Zezinho
-@app.route("/sorvete/<int:nome>",methods=["GET", "POST"])
+
+@app.route("/login", methods=["GET", "POST"])
+def paginaLogin():
+    if(request.method == "GET"):
+        tipoLogin = request.args.get("pera")
+        if(tipoLogin == "Especial"):
+            return render_template("loginEspecial.html")
+        else:
+            return render_template("login.html")
+    else:
+        login = request.form["Manga"]
+        passWord = request.form["password"]
+
+        if(login == "zezinho" and passWord == "1234"):
+            return render_template("paginaInicial.html")
+        else:
+            return render_template("login.html")
+
+# String
+@app.route("/sorvete/<float:nome>",methods=["GET", "POST"])
 def paginaSorvete(nome):
     html = "" 
     
@@ -25,4 +44,4 @@ def paginaPost():
 
 @app.get("/rotaGET")
 def paginaGet():
-    return "PAgina GET"
+    return "Pagina GET"
