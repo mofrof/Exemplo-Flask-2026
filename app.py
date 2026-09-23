@@ -11,13 +11,13 @@ def paginaInicial():
 @app.route("/login", methods=["GET", "POST"])
 def paginaLogin():
     if(request.method == "GET"):
-        tipoLogin = request.args.get("pera")
-        if(tipoLogin == "Especial"):
+        tipoLogin = request.args.get("yyy")
+        if(tipoLogin == "especial"):
             return render_template("loginEspecial.html")
         else:
             return render_template("login.html")
     else:
-        login = request.form["Manga"]
+        login = request.form["Mang"]
         passWord = request.form["password"]
 
         if(login == "zezinho" and passWord == "1234"):
