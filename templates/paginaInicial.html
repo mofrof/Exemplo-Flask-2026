@@ -1,18 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
+    
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="{{url_for('static', filename='css/estilo.css')}}">
 </head>
+
 <body>
-    <h1>Menu</h1>
+    <a href="/logout"> Logout </a>
+    <h1>Menu. Bem vindo {{session["usuario"]}}</h1>
     <form action="/rotaPost" method="post"><button>rotaPost</button></form>
     <form action="rotaGET" method="get"><button>rotaGET</button></form>
+    {% if session["nivel"] == "adm"%}
     <form action="/sorvete/get" method="get"><button>rota get sorvete</button></form>
     <form action="/sorvete/49" method="post"><button>rota post sorvete</button></form>
     <form action="/sorvete/zezinho" method="post"><button>rota zezinho sorvete</button></form>
+    <form action="/loginEspecial" method="post"><button>rota login especial</button></form>
+    <form action="/login" method="get">
+        <input type="hidden" name="teste" value="especial">
+        <input type="hidden" name="teste2" value="especial2">
+        <button>rota login especial</button>
+    </form>
+    {% endif %}
 
     <h1>{{nome}}</h1>
     {% for item in tdsb %}
