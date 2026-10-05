@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-    
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,8 +9,16 @@
 </head>
 
 <body>
+    {% with messages = get_flashed_messages() %}
+    <p>{{messages[0]}}</p>
+    {% endwith %}
+    <br>
     <a href="/logout"> Logout </a>
-    <h1>Menu. Bem vindo {{session["usuario"]}}</h1>
+    <br>
+    <form>
+        
+    </form>
+    <!-- <h1>Menu. Bem vindo {{session["usuario"]}}</h1>
     <form action="/rotaPost" method="post"><button>rotaPost</button></form>
     <form action="rotaGET" method="get"><button>rotaGET</button></form>
     {% if session["nivel"] == "adm"%}
@@ -28,7 +36,8 @@
     <h1>{{nome}}</h1>
     {% for item in tdsb %}
     <h3>{{item}}</h3>
-    {% endfor %}
+    {% endfor %} -->
 
 </body>
+
 </html>

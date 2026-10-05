@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <H1>Pagina UpLoad</H1>
+    {% with  mensage = get_flashed_messages() %}
+    <p style="color: green;">{{mensage[0]}}</p>
+    {% endwith %}
+    <form action="/upload" method="post" enctype="multipart/form-data">
+        <input type="file" name="arquivo" id="arquivo">
+        <button>Upload</button>
+    </form>
+</body>
+</html>
