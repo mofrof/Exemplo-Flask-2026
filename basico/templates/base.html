@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luminary - Soluções Digitais Modernas</title>
+    
+    <!-- Tailwind CSS para utilitários responsivos rápidos -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Fonte Inter do Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Ícones do FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Configurações e estilos CSS customizados -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Efeito de desfoque de fundo suave para a navbar */
+        .glass-navbar {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+
+        /* Animação suave para os cards de serviço */
+        .card-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .card-hover:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.08), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        /* Notificação personalizada Toast (substitui alert) */
+        #toast {
+            transition: all 0.4s ease-in-out;
+            transform: translateY(100px);
+            opacity: 0;
+        }
+        #toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased flex flex-col min-h-screen">
+
+    <!-- ================= NAVBAR (MENU SUPERIOR) ================= -->
+    <header class="glass-navbar sticky top-0 z-50 border-b border-slate-200/80 transition-all duration-200" id="header">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="#" class="flex items-center gap-2 group">
+                        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-600 to-violet-500 flex items-center justify-center text-white font-bold text-xl shadow-md group-hover:scale-105 transition-transform">
+                            <i class="fa-solid fa-cube"></i>
+                        </div>
+                        <span class="text-xl font-extrabold bg-gradient-to-r from-slate-900 to-indigo-950 bg-clip-text text-transparent">
+                            Luminary<span class="text-indigo-600">.</span>
+                        </span>
+                    </a>
+                </div>
+
+                <!-- Links de Navegação Desktop -->
+                <nav class="hidden md:flex items-center space-x-1 lg:space-x-2">
+                    <a href="#inicio" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-900 hover:text-indigo-600 hover:bg-indigo-50/50 transition-colors">Início</a>
+                    <a href="#servicos" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:text-indigo-600 hover:bg-indigo-50/50 transition-colors">Serviços</a>
+                    <a href="#sobre" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:text-indigo-600 hover:bg-indigo-50/50 transition-colors">Sobre Nós</a>
+                    <!-- <a href="#recursos" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:text-indigo-600 hover:bg-indigo-50/50 transition-colors">Recursos</a> -->
+                    <a href="#contato" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:text-indigo-600 hover:bg-indigo-50/50 transition-colors">Contato</a>
+                </nav>
+
+                <!-- Botão Call to Action (CTA) Desktop -->
+                <div class="hidden md:flex items-center gap-3">
+                    <a href="#contato" class="px-5 py-2.5 rounded-xl text-sm font-semibold text-white bg-indigo-600 hover:bg-indigo-700 active:scale-95 shadow-sm hover:shadow-indigo-500/25 transition-all">
+                        Começar Agora
+                    </a>
+                </div>
+
+                <!-- Botão Menu Mobile (Hambúrguer) -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" type="button" class="p-2.5 rounded-xl text-slate-600 hover:text-slate-900 hover:bg-slate-100 focus:outline-none transition-colors" aria-label="Abrir Menu">
+                        <i class="fa-solid fa-bars text-xl" id="menu-icon"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Menu Dropdown Mobile -->
+        <div class="hidden md:hidden border-b border-slate-200 bg-white/95 backdrop-blur-lg px-4 pt-2 pb-6 space-y-2" id="mobile-menu">
+            <a href="#inicio" class="mobile-link block px-4 py-3 rounded-xl text-base font-medium text-slate-900 bg-slate-50 hover:bg-indigo-50 hover:text-indigo-600">Início</a>
+            <a href="#servicos" class="mobile-link block px-4 py-3 rounded-xl text-base font-medium text-slate-600 hover:bg-indigo-50 hover:text-indigo-600">Serviços</a>
+            <a href="#sobre" class="mobile-link block px-4 py-3 rounded-xl text-base font-medium text-slate-600 hover:bg-indigo-50 hover:text-indigo-600">Sobre Nós</a>
+            <!-- <a href="#recursos" class="mobile-link block px-4 py-3 rounded-xl text-base font-medium text-slate-600 hover:bg-indigo-50 hover:text-indigo-600">Recursos</a> -->
+            <a href="#contato" class="mobile-link block px-4 py-3 rounded-xl text-base font-medium text-slate-600 hover:bg-indigo-50 hover:text-indigo-600">Contato</a>
+            <div class="pt-4">
+                <a href="#contato" class="mobile-link block text-center w-full px-5 py-3 rounded-xl text-base font-semibold text-white bg-indigo-600 hover:bg-indigo-700 shadow-md">
+                    Começar Agora
+                </a>
+            </div>
+        </div>
+    </header>
+
+
+    <!-- ================= CONTEÚDO PRINCIPAL (MAIN) ================= -->
+    {% block sorvete %}
+    {% endblock%}
+
+    <!-- ================= RODAPÉ (FOOTER) ================= -->
+    <footer class="bg-slate-950 text-slate-400 border-t border-slate-800/60">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
+                
+                <!-- Coluna 1: Marca e Descrição -->
+                <div class="lg:col-span-2 space-y-4">
+                    <a href="#" class="flex items-center gap-2">
+                        <div class="w-9 h-9 rounded-lg bg-indigo-600 flex items-center justify-center text-white font-bold text-lg">
+                            <i class="fa-solid fa-cube"></i>
+                        </div>
+                        <span class="text-xl font-extrabold text-white">
+                            Luminary<span class="text-indigo-500">.</span>
+                        </span>
+                    </a>
+                    <p class="text-slate-400 text-sm leading-relaxed max-w-sm">
+                        Desenvolvemos interfaces intuitivas e soluções tecnológicas completas que impulsionam marcas modernas no ambiente digital.
+                    </p>
+                    
+                    <!-- Ícones Redes Sociais -->
+                    <div class="flex items-center space-x-3 pt-2">
+                        <a href="#" class="w-9 h-9 rounded-lg bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-white hover:bg-indigo-600 hover:border-indigo-600 transition-all" aria-label="Twitter">
+                            <i class="fa-brands fa-x-twitter text-sm"></i>
+                        </a>
+                        <a href="#" class="w-9 h-9 rounded-lg bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-white hover:bg-indigo-600 hover:border-indigo-600 transition-all" aria-label="LinkedIn">
+                            <i class="fa-brands fa-linkedin-in text-sm"></i>
+                        </a>
+                        <a href="#" class="w-9 h-9 rounded-lg bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-white hover:bg-indigo-600 hover:border-indigo-600 transition-all" aria-label="Instagram">
+                            <i class="fa-brands fa-instagram text-sm"></i>
+                        </a>
+                        <a href="#" class="w-9 h-9 rounded-lg bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-white hover:bg-indigo-600 hover:border-indigo-600 transition-all" aria-label="GitHub">
+                            <i class="fa-brands fa-github text-sm"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Coluna 2: Navegação -->
+                <div>
+                    <h3 class="text-sm font-semibold text-white tracking-wider uppercase mb-4">Navegação</h3>
+                    <ul class="space-y-2.5 text-sm">
+                        <li><a href="#inicio" class="hover:text-white transition-colors">Início</a></li>
+                        <li><a href="#servicos" class="hover:text-white transition-colors">Serviços</a></li>
+                        <li><a href="#sobre" class="hover:text-white transition-colors">Sobre Nós</a></li>
+                        <li><a href="#recursos" class="hover:text-white transition-colors">Recursos</a></li>
+                        <li><a href="#contato" class="hover:text-white transition-colors">Contato</a></li>
+                    </ul>
+                </div>
+
+                <!-- Coluna 3: Soluções -->
+                <div>
+                    <h3 class="text-sm font-semibold text-white tracking-wider uppercase mb-4">Soluções</h3>
+                    <ul class="space-y-2.5 text-sm">
+                        <li><a href="#" class="hover:text-white transition-colors">Desenvolvimento Web</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">UI/UX Design</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Consultoria SEO</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Sistemas Cloud</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">E-commerce</a></li>
+                    </ul>
+                </div>
+
+                <!-- Coluna 4: Legal & Suporte -->
+                <div>
+                    <h3 class="text-sm font-semibold text-white tracking-wider uppercase mb-4">Suporte</h3>
+                    <ul class="space-y-2.5 text-sm">
+                        <li><a href="#" class="hover:text-white transition-colors">Central de Ajuda</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Documentação</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Termos de Uso</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Política de Privacidade</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Status do Sistema</a></li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <!-- Linha Divisória de Rodapé e Direitos Autorais -->
+            <div class="mt-12 pt-8 border-t border-slate-900 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-4">
+                <p>&copy; 2026 Luminary Tecnologias. Todos os direitos reservados.</p>
+                <div class="flex items-center space-x-6">
+                    <a href="#" class="hover:text-slate-400 transition-colors">Privacidade</a>
+                    <a href="#" class="hover:text-slate-400 transition-colors">Termos</a>
+                    <a href="#" class="hover:text-slate-400 transition-colors">Cookies</a>
+                </div>
+            </div>
+
+        </div>
+    </footer>
+
+
+    <!-- TOAST DE NOTIFICAÇÃO (MENSAGEM DE SUCESSO) -->
+    <div id="toast" class="fixed bottom-6 right-6 z-50 flex items-center gap-3 bg-slate-900 text-white px-5 py-4 rounded-2xl shadow-2xl border border-slate-800">
+        <div class="w-8 h-8 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center">
+            <i class="fa-solid fa-check"></i>
+        </div>
+        <div>
+            <p class="font-semibold text-sm">Obrigado pelo contato!</p>
+            <p class="text-xs text-slate-400">Em breve nossa equipe responderá sua mensagem.</p>
+        </div>
+    </div>
+
+
+    <!-- ================= JAVASCRIPT DE INTERATIVIDADE ================= -->
+    <script>
+        // Toggle do Menu Mobile
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIcon = document.getElementById('menu-icon');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        function toggleMenu() {
+            const isHidden = mobileMenu.classList.contains('hidden');
+            if (isHidden) {
+                mobileMenu.classList.remove('hidden');
+                menuIcon.classList.remove('fa-bars');
+                menuIcon.classList.add('fa-xmark');
+            } else {
+                mobileMenu.classList.add('hidden');
+                menuIcon.classList.remove('fa-xmark');
+                menuIcon.classList.add('fa-bars');
+            }
+        }
+
+        mobileMenuBtn.addEventListener('click', toggleMenu);
+
+        // Fechar menu mobile ao clicar em um link
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                if (!mobileMenu.classList.contains('hidden')) {
+                    toggleMenu();
+                }
+            });
+        });
+
+        // Adicionar sombra na navbar quando a página scrollar
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 20) {
+                header.classList.add('shadow-md');
+            } else {
+                header.classList.remove('shadow-md');
+            }
+        });
+
+        // Manipulação do formulário (Exibe Toast amigável em vez de alert)
+        function handleSubscribe(event) {
+            event.preventDefault();
+            const toast = document.getElementById('toast');
+            toast.classList.add('show');
+            
+            // Limpa formulário
+            event.target.reset();
+
+            // Esconde toast após 4 segundos
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 4000);
+        }
+    </script>
+</body>
+</html>

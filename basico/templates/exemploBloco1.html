@@ -1,0 +1,181 @@
+
+    {% extends 'base.html' %}
+
+    {% block sorvete %}
+    <!-- ================= CONTEÚDO PRINCIPAL (MAIN) ================= -->
+    <main class="flex-grow">
+        
+        <!-- SEÇÃO HERO -->
+        <section id="inicio" class="relative py-20 lg:py-28 overflow-hidden bg-gradient-to-b from-indigo-50/60 via-slate-50 to-slate-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="text-center max-w-3xl mx-auto space-y-6">
+                    
+                    <!-- Badge em Destaque -->
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-indigo-100/80 border border-indigo-200 text-indigo-700 text-xs font-semibold uppercase tracking-wider">
+                        <span class="w-2 h-2 rounded-full bg-indigo-600 animate-pulse"></span>
+                        Nova Plataforma 2.0 Lançada
+                    </div>
+
+                    <!-- Título Principal -->
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 tracking-tight leading-tight">
+                        Exemplo Bloco 1 <span class="bg-gradient-to-r from-indigo-600 to-violet-600 bg-clip-text text-transparent">experiências digitais</span>
+                    </h1>
+
+                    <!-- Subtítulo -->
+                    <p class="text-lg sm:text-xl text-slate-600 font-normal leading-relaxed">
+                        Construímos ecossistemas web modernos, escaláveis e focados na conversão dos seus clientes com velocidade máxima e segurança.
+                    </p>
+
+                    <!-- Botões de Ação -->
+                    <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
+                        <a href="#servicos" class="w-full sm:w-auto px-8 py-4 rounded-xl text-base font-semibold text-white bg-indigo-600 hover:bg-indigo-700 shadow-lg shadow-indigo-500/25 active:scale-95 transition-all text-center">
+                            Explorar Serviços <i class="fa-solid fa-arrow-right ml-2 text-sm"></i>
+                        </a>
+                        <a href="#sobre" class="w-full sm:w-auto px-8 py-4 rounded-xl text-base font-semibold text-slate-700 bg-white hover:bg-slate-100 border border-slate-200 shadow-sm active:scale-95 transition-all text-center">
+                            Saber Mais
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+
+        <!-- SEÇÃO SERVIÇOS (CARDS DE CONTEÚDO) -->
+        <section id="servicos" class="py-20 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="text-center max-w-2xl mx-auto mb-16">
+                    <h2 class="text-3xl font-bold text-slate-900 tracking-tight sm:text-4xl">Nossos Serviços</h2>
+                    <p class="mt-4 text-lg text-slate-600">Soluções completas desenhadas para acelerar o crescimento do seu negócio.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    
+                    <!-- Card 1 -->
+                    <div class="card-hover p-8 rounded-2xl bg-slate-50 border border-slate-100 flex flex-col justify-between">
+                        <div>
+                            <div class="w-12 h-12 rounded-xl bg-indigo-100 text-indigo-600 flex items-center justify-center text-xl font-bold mb-6">
+                                <i class="fa-solid fa-laptop-code"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-slate-900 mb-3">Desenvolvimento Web</h3>
+                            <p class="text-slate-600 leading-relaxed text-sm">
+                                Sites institucionais, sistemas e landing pages responsivas e ultra-rápidas desenvolvidas com as tecnologias mais recentes do mercado.
+                            </p>
+                        </div>
+                        <a href="#" class="mt-6 inline-flex items-center text-sm font-semibold text-indigo-600 hover:text-indigo-800 transition-colors">
+                            Saiba mais <i class="fa-solid fa-chevron-right ml-1.5 text-xs"></i>
+                        </a>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="card-hover p-8 rounded-2xl bg-slate-50 border border-slate-100 flex flex-col justify-between">
+                        <div>
+                            <div class="w-12 h-12 rounded-xl bg-violet-100 text-violet-600 flex items-center justify-center text-xl font-bold mb-6">
+                                <i class="fa-solid fa-wand-magic-sparkles"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-slate-900 mb-3">Design UI/UX</h3>
+                            <p class="text-slate-600 leading-relaxed text-sm">
+                                Interfaces intuitivas, modernas e focadas na melhor experiência de uso para engajar e converter seus visitantes em clientes.
+                            </p>
+                        </div>
+                        <a href="#" class="mt-6 inline-flex items-center text-sm font-semibold text-violet-600 hover:text-violet-800 transition-colors">
+                            Saiba mais <i class="fa-solid fa-chevron-right ml-1.5 text-xs"></i>
+                        </a>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div class="card-hover p-8 rounded-2xl bg-slate-50 border border-slate-100 flex flex-col justify-between">
+                        <div>
+                            <div class="w-12 h-12 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center text-xl font-bold mb-6">
+                                <i class="fa-solid fa-chart-line"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-slate-900 mb-3">Otimização & SEO</h3>
+                            <p class="text-slate-600 leading-relaxed text-sm">
+                                Posicione sua marca no topo dos motores de busca com estratégias avançadas de SEO e otimização de performance.
+                            </p>
+                        </div>
+                        <a href="#" class="mt-6 inline-flex items-center text-sm font-semibold text-emerald-600 hover:text-emerald-800 transition-colors">
+                            Saiba mais <i class="fa-solid fa-chevron-right ml-1.5 text-xs"></i>
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+
+        <!-- SEÇÃO ESTATÍSTICAS / SOBRE NÓS -->
+        <section id="sobre" class="py-20 bg-slate-900 text-white relative overflow-hidden">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <span class="text-indigo-400 text-sm font-semibold tracking-wider uppercase">Por que nos escolher</span>
+                        <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-2 mb-6 leading-snug">
+                            Liderando a inovação digital com paixão e excelência
+                        </h2>
+                        <p class="text-slate-300 text-base leading-relaxed mb-6">
+                            Nossa equipe combina design inovador, engenharia de software de ponta e estratégia de mercado para entregar soluções que realmente geram valor.
+                        </p>
+                        
+                        <ul class="space-y-3 text-slate-300">
+                            <li class="flex items-center gap-3">
+                                <i class="fa-solid fa-circle-check text-emerald-400"></i>
+                                <span>Código limpo, seguro e otimizado.</span>
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <i class="fa-solid fa-circle-check text-emerald-400"></i>
+                                <span>Suporte dedicado e acompanhamento contínuo.</span>
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <i class="fa-solid fa-circle-check text-emerald-400"></i>
+                                <span>Design responsivo para múltiplos dispositivos.</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Grid de Estatísticas -->
+                    <div class="grid grid-cols-2 gap-6">
+                        <div class="p-6 rounded-2xl bg-slate-800/80 border border-slate-700/60 text-center">
+                            <div class="text-3xl lg:text-4xl font-extrabold text-indigo-400 mb-2">99.8%</div>
+                            <div class="text-slate-400 text-sm">Disponibilidade de Serviços</div>
+                        </div>
+                        <div class="p-6 rounded-2xl bg-slate-800/80 border border-slate-700/60 text-center">
+                            <div class="text-3xl lg:text-4xl font-extrabold text-indigo-400 mb-2">+250</div>
+                            <div class="text-slate-400 text-sm">Projetos Entregues</div>
+                        </div>
+                        <div class="p-6 rounded-2xl bg-slate-800/80 border border-slate-700/60 text-center">
+                            <div class="text-3xl lg:text-4xl font-extrabold text-indigo-400 mb-2">15+</div>
+                            <div class="text-slate-400 text-sm">Prêmios de Design</div>
+                        </div>
+                        <div class="p-6 rounded-2xl bg-slate-800/80 border border-slate-700/60 text-center">
+                            <div class="text-3xl lg:text-4xl font-extrabold text-indigo-400 mb-2">24/7</div>
+                            <div class="text-slate-400 text-sm">Atendimento ao Cliente</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- SEÇÃO CTA BANNER -->
+        <section id="contato" class="py-20 bg-slate-50">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="bg-gradient-to-r from-indigo-600 to-violet-600 rounded-3xl p-8 sm:p-12 text-center text-white shadow-xl shadow-indigo-500/10">
+                    <h2 class="text-3xl sm:text-4xl font-bold mb-4">Pronto para transformar sua presença digital?</h2>
+                    <p class="text-indigo-100 text-base sm:text-lg max-w-2xl mx-auto mb-8">
+                        Entre em contato com nossa equipe hoje mesmo e solicite uma demonstração ou orçamento sem compromisso.
+                    </p>
+                    
+                    <form id="newsletter-form" onsubmit="handleSubscribe(event)" class="max-w-md mx-auto flex flex-col sm:flex-row gap-3">
+                        <input type="email" required placeholder="Digite seu e-mail melhor..." class="w-full px-5 py-3.5 rounded-xl text-slate-800 text-sm focus:outline-none focus:ring-2 focus:ring-white">
+                        <button type="submit" class="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-semibold text-sm transition-all whitespace-nowrap active:scale-95">
+                            Enviar Contato
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+    </main>
+    {% endblock %}

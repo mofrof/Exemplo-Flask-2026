@@ -10,24 +10,36 @@ Session(app)
 
 
 listaUsuario = [
-                {"login":"zezinho", "senha":"1234", "nivel":"normal"},
-                {"login":"maria", "senha":"4321", "nivel":"adm"},
+                {"login":"zezinho", "senha":"1234", "nivel":"adm"},
+                {"login":"maria", "senha":"4321", "nivel":"normal"},
                 ]
+
+
+@app.route("/b1")
+def bloco1():
+    return render_template("exemploBloco1.html")
+
+@app.route("/b2")
+def bloco2():
+    return render_template("exemploBloco2.html")
+
+
+
 
 
 @app.errorhandler(404)
 def paginaErro(error):
     return render_template("/erros/erro404.html"), 404
 
-@app.route("/paginaInicial")#raiz Method GET POSt PUT DELETE
+@app.route("/paginaIniciallll")#raiz Method GET POSt PUT DELETE
 def paginaInicial():
     if("logado" in session and session["logado"] == True):
         listaFrutas = ["Abacaxi", "uva", "Pera", "Banana","Abacaxi", "uva", "Pera", "Banana","Abacaxi", "uva", "Pera", "Banana","Abacaxi", "uva", "Pera", "Banana","Abacaxi", "uva", "Pera", "Banana","Abacaxi", "uva", "Pera", "Banana","Abacaxi", "uva", "Pera", "Banana","Abacaxi", "uva", "Pera", "Banana","Abacaxi", "uva", "Pera", "Banana","Abacaxi", "uva", "Pera", "Banana"]
         return render_template("paginaInicial.html", tdsb = listaFrutas, nome = "Zezinho")
     else:
-        return redirect("/login")
+        return redirect(url_for("paginaLogin"))
 
-@app.route("/login", methods=["GET", "POST"])
+@app.route("/loginggggg", methods=["GET", "POST"])
 def paginaLogin():
     if(request.method == "GET"):
         return render_template("login.html")
@@ -42,20 +54,23 @@ def paginaLogin():
                 session["logado"] = True
                 session["nivel"] = "adm"
                 session["usuario"] = "Zezinho"
-                # flash(f"{listaUsuario[0]["nivel"]}")
+                flash(f"{listaUsuario[0]["nivel"]}")
                 return redirect(url_for("paginaInicial"))
             else:
                 flash("Erro Senha")
-                return render_template("login.html")
+                return render_template("login.html",erro="Login ou senha invalidos")
         elif(login == "maria" and passWord == "4321" ):
             session["logado"] = True
-            session["nivel"] = "adm"
+            session["nivel"] = "aluno"
             session["usuario"] = "mary"
-            flash(f"{listaUsuario[0]["nivel"]}")
+            flash(f"{listaUsuario[1]["nivel"]}")
+            flash(f"outra mensagem")
+            flash(f"outra mensagem")
             return redirect(url_for("paginaInicial"))
 
         else:
             flash("Erro Login")
+            flash("TESTE exemplo")
             return render_template("login.html")
 
 # String
@@ -76,9 +91,9 @@ def paginaSorvete(nome):
 def logout():
     if("logado" in session and session["logado"] == True):
         session.clear()
-        return redirect("/login")
+        return redirect(url_for("paginaLogin"))
     else:
-        return redirect("/login")
+        return redirect(url_for("paginaLogin"))
 
 
 @app.post("/rotaPost")

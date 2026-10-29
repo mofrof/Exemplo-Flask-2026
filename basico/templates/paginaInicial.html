@@ -13,11 +13,17 @@
     <p>{{messages[0]}}</p>
     {% endwith %}
     <br>
+    <h2>Bem-vindo {{session['usuario']}}</h2>
+    <br>
+    <a href="">Menu Principal</a>
+    <br>
+    {% if session['nivel'] == "adm" %}
+    <a href="">Área Administrativa</a>
+    {% endif %}
+    <br>
     <a href="/logout"> Logout </a>
     <br>
-    <form>
-        
-    </form>
+
     <!-- <h1>Menu. Bem vindo {{session["usuario"]}}</h1>
     <form action="/rotaPost" method="post"><button>rotaPost</button></form>
     <form action="rotaGET" method="get"><button>rotaGET</button></form>
