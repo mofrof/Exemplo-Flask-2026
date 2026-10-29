@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block title %}Página Não Encontrada - Jogoteca{% endblock %}
+
+{% block content %}
+<div class="text-center py-5">
+    <h1 class="display-1 fw-bold text-danger">404</h1>
+    <h2 class="mb-3">Página Não Encontrada</h2>
+    <p class="lead text-muted mb-4">A página que você está procurando não existe ou foi movida.</p>
+    <a href="{{ url_for('index_jogos') }}" class="btn btn-primary btn-lg">
+        <i class="bi bi-house-door"></i> Voltar ao Início
+    </a>
+</div>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}Política de Privacidade - LGPD{% endblock %}
+
+{% block content %}
+<div class="card shadow-sm p-4 border-0">
+    <h2><i class="bi bi-shield-check text-success"></i> Proteção de Dados e LGPD</h2>
+    <hr>
+    <p class="lead">O Jogoteca está em conformidade com a Lei Geral de Proteção de Dados (Lei nº 13.709/2018).</p>
+
+    <h5>Como tratamos seus dados:</h5>
+    <ul>
+        <li><strong>Minimização:</strong> Coletamos apenas os dados essenciais para autenticação (Nome, Login e Senha).</li>
+        <li><strong>Segurança:</strong> Senhas são criptografadas com algoritmos unidirecionais de alta segurança (`PBKDF2/scrypt`).</li>
+        <li><strong>Armazenamento de Sessões:</strong> As sessões de navegação são armazenadas com `filesystem` local no servidor sem exposição indevida em cookies abertos.</li>
+        <li><strong>Direito de Exclusão:</strong> O usuário tem o direito de solicitar a anonimização ou exclusão do seu cadastro a qualquer momento.</li>
+    </ul>
+
+    <a href="{{ url_for('index_jogos') }}" class="btn btn-outline-secondary mt-3">Voltar</a>
+</div>
+{% endblock %}

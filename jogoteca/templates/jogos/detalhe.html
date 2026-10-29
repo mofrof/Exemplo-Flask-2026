@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}Detalhes do Jogo - {{ jogo.nome }}{% endblock %}
+
+{% block content %}
+<div class="card shadow-sm border-0 p-4">
+    <div class="row g-4 align-items-center">
+        <div class="col-md-5 text-center">
+            {% if jogo.localImagemCapaJogo %}
+                <img src="{{ url_for('static', filename=jogo.localImagemCapaJogo) }}" class="img-fluid rounded shadow" style="max-height: 380px;" alt="{{ jogo.nome }}">
+            {% else %}
+                <div class="bg-light rounded p-5 text-muted">
+                    <i class="bi bi-image display-1"></i>
+                    <p class="mt-2">Sem capa disponível</p>
+                </div>
+            {% endif %}
+        </div>
+        <div class="col-md-7">
+            <h2 class="fw-bold mb-3">{{ jogo.nome }}</h2>
+            <hr>
+            <p class="fs-5"><strong>ID do Registro (UUID):</strong> <code class="text-primary">{{ jogo.uuid }}</code></p>
+            <p class="fs-5"><strong>Plataforma:</strong> <span class="badge bg-secondary">{{ jogo.plataforma }}</span></p>
+            <p class="fs-5"><strong>Data de Lançamento:</strong> {{ jogo.anoLancamento.strftime('%d/%m/%Y') }}</p>
+
+            <div class="mt-4 gap-2 d-flex">
+                <a href="{{ url_for('editar_jogo', jogo_uuid=jogo.uuid) }}" class="btn btn-warning">
+                    <i class="bi bi-pencil"></i> Editar Dados
+                </a>
+                <a href="{{ url_for('index_jogos') }}" class="btn btn-outline-secondary">
+                    <i class="bi bi-arrow-left"></i> Voltar para Lista
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

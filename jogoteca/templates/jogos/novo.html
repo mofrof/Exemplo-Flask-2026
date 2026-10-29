@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block title %}Cadastrar Novo Jogo - Jogoteca{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+        <div class="card shadow-sm border-0 p-4">
+            <h3 class="fw-bold mb-3"><i class="bi bi-plus-circle text-success"></i> Cadastrar Novo Jogo</h3>
+            <p class="text-muted small mb-4">Página dedicada para cadastro (sem modals).</p>
+
+            <form method="POST" action="{{ url_for('cadastrar_jogo') }}" enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label for="nome" class="form-label fw-bold">Nome do Jogo *</label>
+                    <input type="text" class="form-control" id="nome" name="nome" value="{{ nome or '' }}" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="plataforma" class="form-label fw-bold">Plataforma *</label>
+                    <select class="form-select" id="plataforma" name="plataforma" required>
+                        <option value="" disabled {% if not plataforma %}selected{% endif %}>Selecione...</option>
+                        <option value="Console" {% if plataforma == 'Console' %}selected{% endif %}>Console</option>
+                        <option value="PC" {% if plataforma == 'PC' %}selected{% endif %}>PC</option>
+                        <option value="Portatil" {% if plataforma == 'Portatil' %}selected{% endif %}>Portátil</option>
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label for="anoLancamento" class="form-label fw-bold">Data de Lançamento *</label>
+                    <input type="date" class="form-control" id="anoLancamento" name="anoLancamento" value="{{ anoLancamento or '' }}" required>
+                </div>
+
+                <div class="mb-4">
+                    <label for="imagem" class="form-label fw-bold">Capa do Jogo (Opcional)</label>
+                    <input type="file" class="form-control" id="imagem" name="imagem" accept="image/*">
+                </div>
+
+                <div class="d-flex justify-content-between">
+                    <a href="{{ url_for('index_jogos') }}" class="btn btn-outline-secondary">Cancelar</a>
+                    <button type="submit" class="btn btn-success"><i class="bi bi-check-lg"></i> Salvar Jogo</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

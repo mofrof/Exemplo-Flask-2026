@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+
+{% block title %}Catálogo de Jogos - Jogoteca{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2><i class="bi bi-controller"></i> Meus Jogos Cadastrados</h2>
+    <a href="{{ url_for('cadastrar_jogo') }}" class="btn btn-success">
+        <i class="bi bi-plus-lg"></i> Novo Jogo
+    </a>
+</div>
+
+<!-- Filtros e Ordenação -->
+<div class="card shadow-sm p-3 mb-4 bg-white border-0">
+    <form method="GET" action="{{ url_for('index_jogos') }}" class="row g-3">
+        <div class="col-md-4">
+            <label class="form-label fw-bold">Filtrar por Nome</label>
+            <input type="text" name="nome" class="form-control" placeholder="Ex: Mario" value="{{ filtro_nome }}">
+        </div>
+        <div class="col-md-2">
+            <label class="form-label fw-bold">Ano</label>
+            <input type="number" name="ano" class="form-control" placeholder="Ex: 2020" value="{{ filtro_ano }}">
+        </div>
+        <div class="col-md-3">
+            <label class="form-label fw-bold">Ordenar Por</label>
+            <select name="ordem_campo" class="form-select">
+                <option value="nome" {% if ordem_campo == 'nome' %}selected{% endif %}>Nome</option>
+                <option value="ano" {% if ordem_campo == 'ano' %}selected{% endif %}>Ano de Lançamento</option>
+                <option value="plataforma" {% if ordem_campo == 'plataforma' %}selected{% endif %}>Plataforma</option>
+            </select>
+        </div>
+        <div class="col-md-3">
+            <label class="form-label fw-bold">Direção</label>
+            <div class="input-group">
+                <select name="ordem_direcao" class="form-select">
+                    <option value="ASC" {% if ordem_direcao == 'ASC' %}selected{% endif %}>Crescente (A-Z / Antigo)</option>
+                    <option value="DESC" {% if ordem_direcao == 'DESC' %}selected{% endif %}>Decrescente (Z-A / Novo)</option>
+                </select>
+                <button type="submit" class="btn btn-primary"><i class="bi bi-search"></i></button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<!-- Listagem dos Jogos em Cards -->
+<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 mb-4">
+    {% for jogo in jogos %}
+    <div class="col">
+        <div class="card card-jogo h-100">
+            <div class="capa-container">
+                {% if jogo.localImagemCapaJogo %}
+                    <img src="{{ url_for('static', filename=jogo.localImagemCapaJogo) }}" class="capa-img" alt="{{ jogo.nome }}">
+                {% else %}
+                    <i class="bi bi-image capa-placeholder"></i>
+                {% endif %}
+            </div>
+            <div class="card-body">
+                <h5 class="card-title fw-bold text-truncate">{{ jogo.nome }}</h5>
+                <p class="card-text text-muted mb-1">
+                    <i class="bi bi-device-ssd"></i> <strong>Plataforma:</strong> {{ jogo.plataforma }}
+                </p>
+                <p class="card-text text-muted">
+                    <i class="bi bi-calendar-event"></i> <strong>Lançamento:</strong> {{ jogo.anoLancamento.strftime('%d/%m/%Y') if jogo.anoLancamento else '-' }}
+                </p>
+            </div>
+            <div class="card-footer bg-transparent border-top-0 d-flex justify-content-between align-items-center pb-3">
+                <a href="{{ url_for('detalhar_jogo', jogo_uuid=jogo.uuid) }}" class="btn btn-sm btn-outline-info" title="Detalhes">
+                    <i class="bi bi-eye"></i> Detalhes
+                </a>
+                <div class="btn-group">
+                    <a href="{{ url_for('editar_jogo', jogo_uuid=jogo.uuid) }}" class="btn btn-sm btn-outline-warning" title="Alterar">
+                        <i class="bi bi-pencil"></i>
+                    </a>
+                    <form action="{{ url_for('remover_jogo', jogo_uuid=jogo.uuid) }}" method="POST" class="d-inline form-deletar-jogo" data-nome="{{ jogo.nome }}">
+                        <button type="submit" class="btn btn-sm btn-outline-danger" title="Excluir">
+                            <i class="bi bi-trash"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% else %}
+    <div class="col-12">
+        <div class="alert alert-info text-center py-4">
+            Nenhum jogo encontrado com os critérios pesquisados.
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<!-- Paginação -->
+{% if total_paginas > 1 %}
+<nav aria-label="Navegação de páginas">
+    <ul class="pagination justify-content-center">
+        {% for p in range(1, total_paginas + 1) %}
+        <li class="page-item {% if p == pagina_atual %}active{% endif %}">
+            <a class="page-link" href="{{ url_for('index_jogos', pagina=p, nome=filtro_nome, ano=filtro_ano, ordem_campo=ordem_campo, ordem_direcao=ordem_direcao) }}">{{ p }}</a>
+        </li>
+        {% endfor %}
+    </ul>
+</nav>
+{% endif %}
+{% endblock %}

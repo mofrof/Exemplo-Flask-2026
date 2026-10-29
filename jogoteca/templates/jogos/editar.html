@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block title %}Alterar Jogo - {{ jogo.nome }}{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+        <div class="card shadow-sm border-0 p-4">
+            <h3 class="fw-bold mb-3"><i class="bi bi-pencil-square text-warning"></i> Alterar Cadastro do Jogo</h3>
+            <p class="text-muted small mb-4">Página dedicada para edição de registros (sem modals).</p>
+
+            <form method="POST" action="{{ url_for('editar_jogo', jogo_uuid=jogo.uuid) }}" enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label for="nome" class="form-label fw-bold">Nome do Jogo *</label>
+                    <input type="text" class="form-control" id="nome" name="nome" value="{{ jogo.nome }}" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="plataforma" class="form-label fw-bold">Plataforma *</label>
+                    <select class="form-select" id="plataforma" name="plataforma" required>
+                        <option value="Console" {% if jogo.plataforma == 'Console' %}selected{% endif %}>Console</option>
+                        <option value="PC" {% if jogo.plataforma == 'PC' %}selected{% endif %}>PC</option>
+                        <option value="Portatil" {% if jogo.plataforma == 'Portatil' %}selected{% endif %}>Portátil</option>
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label for="anoLancamento" class="form-label fw-bold">Data de Lançamento *</label>
+                    <input type="date" class="form-control" id="anoLancamento" name="anoLancamento" value="{{ jogo.anoLancamento }}" required>
+                </div>
+
+                <div class="mb-4">
+                    <label for="imagem" class="form-label fw-bold">Substituir Capa (Opcional)</label>
+                    <input type="file" class="form-control" id="imagem" name="imagem" accept="image/*">
+                    {% if jogo.localImagemCapaJogo %}
+                        <small class="text-muted d-block mt-1">Capa atual: {{ jogo.localImagemCapaJogo }}</small>
+                    {% endif %}
+                </div>
+
+                <div class="d-flex justify-content-between">
+                    <a href="{{ url_for('index_jogos') }}" class="btn btn-outline-secondary">Cancelar</a>
+                    <button type="submit" class="btn btn-warning"><i class="bi bi-check-lg"></i> Atualizar Dados</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
